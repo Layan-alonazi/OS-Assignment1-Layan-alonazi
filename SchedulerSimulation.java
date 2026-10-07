@@ -151,6 +151,8 @@ class Process implements Runnable {
 }
 
 public class SchedulerSimulation {
+    private static int contextSwitchCount = 0; // Feature 2: Counts each process dispatch to the CPU
+
     public static void main(String[] args) {
         // ⚠️ IMPORTANT: Put your student ID here to seed the random number generator
         // This makes your output unique to you - DO NOT forget to change this!
@@ -245,7 +247,7 @@ public class SchedulerSimulation {
             }
             System.out.println(Colors.BRIGHT_WHITE + "]" + Colors.RESET);
             System.out.println(Colors.BOLD + Colors.MAGENTA + "└" + "─".repeat(79) + Colors.RESET + "\n");
-
+            contextSwitchCount++; // Feature 2: Count each time a process starts running
             // Start the thread, which will run the process for one time quantum
             currentThread.start();
 
@@ -278,6 +280,15 @@ public class SchedulerSimulation {
         }
 
         // End of the scheduler simulation
+        System.out.println(Colors.BRIGHT_YELLOW + "Context Switches: " + contextSwitchCount + Colors.RESET); // Feature
+                                                                                                             // 2:
+                                                                                                             // Display
+                                                                                                             // the
+                                                                                                             // total
+                                                                                                             // number
+                                                                                                             // of
+                                                                                                             // process
+                                                                                                             // dispatches
         System.out.println(Colors.BOLD + Colors.BRIGHT_GREEN +
                 "╔════════════════════════════════════════════════════════════════════════════════╗" +
                 Colors.RESET);
